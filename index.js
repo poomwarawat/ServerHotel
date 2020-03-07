@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const authRoute = require('./route/auth');
 const cors = require('cors');
 const Users = require('./model/user');
+const management = require('./route/uploadData');
 
 
 dotenv.config()
@@ -17,6 +18,7 @@ mongoose.connect(
 app.use(express.json())
 app.use(cors())
 app.use('/user', authRoute )
+app.use('/management', management )
 
 app.get('/getData', (req,res) =>{
     Users.find({}, (err, book) =>{
