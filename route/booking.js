@@ -28,4 +28,14 @@ router.post("/search", (req,res) =>{
     })
 })
 
+router.post("/searchHotel", (req,res) =>{
+    console.log(req.body.Hotel)
+    Booking.find({Hotel : req.body.Hotel}, (err, data ) =>{
+        if(err) return res.send(err)
+        else{
+            return res.send(data)
+        }
+    })
+})
+
 module.exports = router
