@@ -26,4 +26,21 @@ router.post("/uploadHotelData", async (req,res) =>{
     }
 })
 
+router.post("/listHotelnames", async (req, res) =>{
+    console.log(req.body.userEmail)
+    Hotel.findOne({ email : req.body.userEmail}, (err, data) =>{
+        if(err) return res.send(err)
+        else{
+            return res.send(data)
+        }
+    })
+})
+
+router.get('/getHotel', (req,res) =>{
+    Hotel.find({}, (err, data) =>{
+        if(err) return res.send(err)
+        else return res.send(data)
+    })
+})
+
 module.exports = router
