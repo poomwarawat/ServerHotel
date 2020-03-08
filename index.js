@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const authRoute = require('./route/auth');
 const cors = require('cors');
-const Users = require('./model/user');
+const Booking = require('./route/booking');
 const management = require('./route/uploadData');
 
 
@@ -19,22 +19,6 @@ app.use(express.json())
 app.use(cors())
 app.use('/user', authRoute )
 app.use('/management', management )
-
-app.get('/getData', (req,res) =>{
-    Users.find({}, (err, book) =>{
-        if(err) return res.send(err)
-        else return res.send(book)
-    })
-})
-
-app.get('/getOnedata', (req,res) =>{
-    Users.findOne({email : req.body.email}, (err, data) =>{
-        if(err) return res.send(err)
-        else{
-            console.log(data._id)
-            return res.send(data)
-        }
-    })
-})
+app.use('/booking', Booking)
 
 app.listen(4000, () => console.log("Server is running"))

@@ -43,4 +43,11 @@ router.get('/getHotel', (req,res) =>{
     })
 })
 
+router.post('/getHotel', (req,res) =>{
+    Hotel.find({ _id : req.body.id }, (err, data) =>{
+        if(err) return res.send(err)
+        else return res.send(data)
+    })
+})
+
 module.exports = router
