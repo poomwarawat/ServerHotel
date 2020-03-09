@@ -2,7 +2,6 @@ const router = require('express').Router();
 const Booking = require('../model/booking');
 
 router.post("/addBooking", async (req, res) =>{
-    console.log(req.body)
     const booking = new Booking({
         Hotel : req.body.Hotel,
         Price : req.body.Price,
@@ -18,18 +17,15 @@ router.post("/addBooking", async (req, res) =>{
     }
 })
 router.post("/search", (req,res) =>{
-    console.log(req.body.email)
     Booking.find({Email : req.body.email}, (err, data ) =>{
         if(err) return res.send(err)
         else{
-            console.log(data)
             return res.send(data)
         }
     })
 })
 
 router.post("/searchHotel", (req,res) =>{
-    console.log(req.body.Hotel)
     Booking.find({Hotel : req.body.Hotel}, (err, data ) =>{
         if(err) return res.send(err)
         else{

@@ -49,4 +49,12 @@ router.post('/getHotel', (req,res) =>{
     })
 })
 
+router.post("/deletePost", (req,res) =>{
+    Hotel.deleteMany({ email : req.body.userEmail}, (err,data)=>{
+        if(err) return res.send(err)
+        else{
+            return res.send(data)
+        }
+    })
+})
 module.exports = router
