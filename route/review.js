@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Review = require('../model/review');
 
 router.post("/uploadReview", async(req,res) =>{
+    console.log(req.body)
     const review = new Review({
         email : req.body.email,
         review : req.body.review,
